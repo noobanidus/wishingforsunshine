@@ -56,7 +56,7 @@ public class ConfigManager {
   }
 
   @Nullable
-  public static ItemType getTypeForItem (ItemStack item) {
+  public static ItemType getTypeForItem(ItemStack item) {
     for (ItemType type : ItemType.values()) {
       ItemStack forType = getItemForType(type);
       if (ItemUtil.equalWithoutSize(forType, item)) {
@@ -68,7 +68,7 @@ public class ConfigManager {
   }
 
   @Nullable
-  private static ItemStack getItem (String name) {
+  private static ItemStack getItem(String name) {
     ResourceLocation rl = new ResourceLocation(name);
     Item item = ForgeRegistries.ITEMS.getValue(rl);
     if (item == null) {

@@ -30,7 +30,7 @@ public class ModBlocks {
           .build(p))
       .register();
 
-  public static void load () {
+  public static void load() {
 
   }
 }

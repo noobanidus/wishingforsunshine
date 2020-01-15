@@ -3,15 +3,12 @@ package noobanidus.mods.wishingforsunshine.tiles;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import noobanidus.mods.wishingforsunshine.config.ConfigManager;
 import noobanidus.mods.wishingforsunshine.config.ItemType;
 import noobanidus.mods.wishingforsunshine.init.ModTiles;
-import noobanidus.mods.wishingforsunshine.util.ItemUtil;
 
 public class WishingWellTile extends TileEntity {
   public WishingWellTile() {
@@ -20,7 +17,7 @@ public class WishingWellTile extends TileEntity {
 
   public ItemType itemCollide(ItemEntity itemEntity) {
     ItemType result = handleItem(itemEntity.getItem());
-    if (result != null && !world.isRemote) {
+    if (result != null && world != null && !world.isRemote) {
       itemEntity.getItem().shrink(1);
       if (itemEntity.getItem().isEmpty()) {
         itemEntity.remove();
@@ -31,7 +28,7 @@ public class WishingWellTile extends TileEntity {
 
   public ItemType itemActivated(PlayerEntity player, Hand hand, ItemStack stack) {
     ItemType result = handleItem(stack);
-    if (result != null && !world.isRemote) {
+    if (result != null && world != null && !world.isRemote) {
       stack.shrink(1);
       player.setHeldItem(hand, stack.isEmpty() ? ItemStack.EMPTY : stack);
     }
@@ -93,25 +90,25 @@ public class WishingWellTile extends TileEntity {
         return type;
       case MORNING:
         if (!world.isRemote) {
-          world.setGameTime((world.getGameTime() / 24000) * 24000);
+          world.setDayTime(1000);
         }
 
         return type;
       case SUNSET:
         if (!world.isRemote) {
-          world.setGameTime((world.getGameTime() / 24000) * 24000 + 13800);
+          world.setDayTime(13800);
         }
 
         return type;
       case MIDDAY:
         if (!world.isRemote) {
-          world.setGameTime((world.getGameTime() / 24000) * 24000 + 5800);
+          world.setDayTime(5800);
         }
 
         return type;
       case MIDNIGHT:
         if (!world.isRemote) {
-          world.setGameTime((world.getGameTime() / 24000) * 24000 + 17800);
+          world.setDayTime(17800);
         }
 
         return type;
