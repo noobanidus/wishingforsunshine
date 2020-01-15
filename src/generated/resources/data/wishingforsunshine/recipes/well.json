@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "PBP",
+    "SSS"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    },
+    "S": {
+      "tag": "minecraft:stone_bricks"
+    }
+  },
+  "result": {
+    "item": "wishingforsunshine:well"
+  }
+}

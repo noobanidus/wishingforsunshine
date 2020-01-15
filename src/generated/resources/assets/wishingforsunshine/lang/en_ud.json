@@ -1,0 +1,11 @@
+{
+  "block.wishingforsunshine.well": "\u05DF\u05DF\u01DDM",
+  "itemGroup.wishingforsunshine": "\u01DDu\u0131\u0265sunS \u0279o\u2132 bu\u0131\u0265s\u0131M",
+  "wishingforsunshine.message.midday": "\u00A1uns \u028E\u0250p-uoou '\u0287\u0265b\u0131\u0279q \u01DD\u0265\u0287 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.midnight": "\u00A1\u0279no\u0265 bu\u0131\u0265\u0254\u0287\u0131\u028D \u01DD\u0265\u0287 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.morning": "\u00A1\u028E\u0250p \u028D\u01DDu \u0250 \u025Fo u\u028D\u0250p \u01DD\u0265\u0287 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.rain": "\u00A1u\u0131\u0250\u0279 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.sunset": "\u00A1uns bu\u0131\u0287\u0287\u01DDs s,\u0287\u0265b\u0131\u05DF\u0131\u028D\u0287 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.sunshine": "\u00A1s\u01DD\u0131\u029Es \u0279\u0250\u01DD\u05DF\u0254 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s",
+  "wishingforsunshine.message.thunder": "\u00A1bu\u0131u\u0287\u0265b\u0131\u05DF & s\u0287\u05DFoq\u0279\u01DDpun\u0265\u0287 \u0279o\u025F p\u01DD\u0265s\u0131\u028D %s"
+}

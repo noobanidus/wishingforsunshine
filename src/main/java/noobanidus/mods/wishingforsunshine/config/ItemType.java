@@ -1,6 +1,6 @@
 package noobanidus.mods.wishingforsunshine.config;
 
-public enum EnumItemType {
+public enum ItemType {
   RAIN,
   THUNDER,
   SUNSHINE,

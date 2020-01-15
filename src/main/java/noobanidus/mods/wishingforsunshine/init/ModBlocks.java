@@ -1,47 +1,36 @@
 package noobanidus.mods.wishingforsunshine.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import com.tterrag.registrate.util.RegistryEntry;
+import net.minecraft.block.SoundType;
+import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import noobanidus.mods.wishingforsunshine.WishingForSunshine;
-import noobanidus.mods.wishingforsunshine.blocks.BlockWell;
-import noobanidus.mods.wishingforsunshine.tiles.TileWishingWell;
+import noobanidus.mods.wishingforsunshine.blocks.WellBlock;
 
-@Mod.EventBusSubscriber(modid= WishingForSunshine.MODID)
+import static noobanidus.mods.wishingforsunshine.WishingForSunshine.REGISTRATE;
+
+@Mod.EventBusSubscriber(modid = WishingForSunshine.MODID)
 public class ModBlocks {
-  public static ResourceLocation WELL = new ResourceLocation(WishingForSunshine.MODID, "well");
-  public static final BlockWell well = new BlockWell();
-  public static final ItemBlock wellItemBlock = new ItemBlock(well);
+  public static final RegistryEntry<WellBlock> WELL = REGISTRATE.block("well", WellBlock::new)
+      .blockstate((ctx, p) -> p.horizontalBlock(ctx.getEntry(), p.getExistingFile(new ResourceLocation(WishingForSunshine.MODID, "block/well"))))
+      .properties(o -> o.hardnessAndResistance(3f).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE))
+      .simpleItem()
+      .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
+          .patternLine(" P ")
+          .patternLine("PBP")
+          .patternLine("SSS")
+          .key('P', ItemTags.PLANKS)
+          .key('B', Items.WATER_BUCKET)
+          .key('S', ItemTags.STONE_BRICKS)
+          .addCriterion("has_water", p.hasItem(Items.WATER_BUCKET))
+          .build(p))
+      .register();
 
-  static {
-    well.setRegistryName(WELL);
-    wellItemBlock.setRegistryName(WELL);
-    well.setCreativeTab(WishingForSunshine.TAB);
-    wellItemBlock.setCreativeTab(WishingForSunshine.TAB);
-  }
+  public static void load () {
 
-  @SubscribeEvent
-  public static void onBlockRegistry (RegistryEvent.Register<Block> event) {
-    event.getRegistry().register(well);
-
-    GameRegistry.registerTileEntity(TileWishingWell.class, WELL);
-  }
-
-  @SubscribeEvent
-  public static void onItemRegistry (RegistryEvent.Register<Item> event) {
-    event.getRegistry().register(wellItemBlock);
-  }
-
-  @SubscribeEvent
-  public static void onRegisterModels (ModelRegistryEvent event) {
-    ModelLoader.setCustomModelResourceLocation(wellItemBlock, 0, new ModelResourceLocation(WELL, "inventory"));
   }
 }

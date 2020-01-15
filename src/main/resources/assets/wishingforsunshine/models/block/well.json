@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "blocks/stonebrick",
-		"3": "blocks/planks_spruce",
-		"5": "blocks/water_still",
-		"particle": "blocks/stonebrick"
+		"0": "block/stone_bricks",
+		"3": "block/spruce_planks",
+		"5": "block/water_still",
+		"particle": "block/stone_bricks"
 	},
 	"parent": "block/block",
 	"elements": [

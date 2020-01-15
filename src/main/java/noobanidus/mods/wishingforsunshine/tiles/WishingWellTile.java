@@ -1,32 +1,36 @@
 package noobanidus.mods.wishingforsunshine.tiles;
 
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Hand;
 import net.minecraft.world.storage.WorldInfo;
-import noobanidus.mods.wishingforsunshine.config.EnumItemType;
-import noobanidus.mods.wishingforsunshine.config.WishingConfig;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import noobanidus.mods.wishingforsunshine.config.ConfigManager;
+import noobanidus.mods.wishingforsunshine.config.ItemType;
+import noobanidus.mods.wishingforsunshine.init.ModTiles;
 import noobanidus.mods.wishingforsunshine.util.ItemUtil;
 
-public class TileWishingWell extends TileEntity {
-  public TileWishingWell() {
+public class WishingWellTile extends TileEntity {
+  public WishingWellTile() {
+    super(ModTiles.WISHING_WELL.get());
   }
 
-  public EnumItemType itemCollide(EntityItem itemEntity) {
-    EnumItemType result = handleItem(itemEntity.getItem());
+  public ItemType itemCollide(ItemEntity itemEntity) {
+    ItemType result = handleItem(itemEntity.getItem());
     if (result != null && !world.isRemote) {
       itemEntity.getItem().shrink(1);
       if (itemEntity.getItem().isEmpty()) {
-        itemEntity.setDead();
+        itemEntity.remove();
       }
     }
     return result;
   }
 
-  public EnumItemType itemActivated(EntityPlayer player, EnumHand hand, ItemStack stack) {
-    EnumItemType result = handleItem(stack);
+  public ItemType itemActivated(PlayerEntity player, Hand hand, ItemStack stack) {
+    ItemType result = handleItem(stack);
     if (result != null && !world.isRemote) {
       stack.shrink(1);
       player.setHeldItem(hand, stack.isEmpty() ? ItemStack.EMPTY : stack);
@@ -34,12 +38,12 @@ public class TileWishingWell extends TileEntity {
     return result;
   }
 
-  private EnumItemType handleItem(ItemStack stack) {
-    if (stack.isEmpty()) {
+  private ItemType handleItem(ItemStack stack) {
+    if (stack.isEmpty() || world == null) {
       return null;
     }
 
-    EnumItemType type = getTypeFromItem(stack);
+    ItemType type = ConfigManager.getTypeForItem(stack);
     if (type == null) {
       return null;
     }
@@ -89,41 +93,30 @@ public class TileWishingWell extends TileEntity {
         return type;
       case MORNING:
         if (!world.isRemote) {
-          world.setWorldTime((world.getWorldTime() / 24000) * 24000);
+          world.setGameTime((world.getGameTime() / 24000) * 24000);
         }
 
         return type;
       case SUNSET:
         if (!world.isRemote) {
-          world.setWorldTime((world.getWorldTime() / 24000) * 24000 + 13800);
+          world.setGameTime((world.getGameTime() / 24000) * 24000 + 13800);
         }
 
         return type;
       case MIDDAY:
         if (!world.isRemote) {
-          world.setWorldTime((world.getWorldTime() / 24000) * 24000 + 5800);
+          world.setGameTime((world.getGameTime() / 24000) * 24000 + 5800);
         }
 
         return type;
       case MIDNIGHT:
         if (!world.isRemote) {
-          world.setWorldTime((world.getWorldTime() / 24000) * 24000 + 17800);
+          world.setGameTime((world.getGameTime() / 24000) * 24000 + 17800);
         }
 
         return type;
       default:
         return null;
     }
-  }
-
-  private EnumItemType getTypeFromItem (ItemStack stack) {
-    for (EnumItemType type : EnumItemType.values()) {
-      ItemStack typeStack = WishingConfig.getItemForType(type);
-      if (ItemUtil.equalWithoutSize(stack, typeStack)) {
-        return type;
-      }
-    }
-
-    return null;
   }
 }
