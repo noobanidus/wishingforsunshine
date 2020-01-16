@@ -73,7 +73,9 @@ public class BlockWell extends Block {
     if (te instanceof TileWishingWell) {
       EnumItemType result = ((TileWishingWell) te).itemActivated(playerIn, hand, playerIn.getHeldItem(hand));
       if (result != null) {
-        alertServer(playerIn.getName(), result);
+        if (!worldIn.isRemote) {
+          alertServer(playerIn.getName(), result);
+        }
         return true;
       }
     }
