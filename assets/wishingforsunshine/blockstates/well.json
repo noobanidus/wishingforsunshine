@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "wishingforsunshine:well"
+  },
+  "variants": {
+    "facing": {
+      "north": { },
+      "south": { },
+      "east": {
+        "transform": {
+          "rotation": {
+            "y": 90
+          }
+        }
+      },
+      "west": {
+        "transform": {
+          "rotation": {
+            "y": 90
+          }
+        }
+      }
+    },
+    "inventory": {
+      "model": "wishingforsunshine:well"
+    }
+  }
+}
