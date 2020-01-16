@@ -113,6 +113,9 @@ configurations {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate

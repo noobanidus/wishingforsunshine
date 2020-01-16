@@ -1,11 +1,19 @@
 {
   "block.wishingforsunshine.well": "Well",
   "itemGroup.wishingforsunshine": "Wishing For Sunshine",
+  "wishingforsunshine.jei.well": "World Manipulation",
   "wishingforsunshine.message.midday": "%s wished for the bright, noon-day sun!",
   "wishingforsunshine.message.midnight": "%s wished for the witching hour!",
-  "wishingforsunshine.message.morning": "%s wished for the dawn of a new day!",
   "wishingforsunshine.message.rain": "%s wished for rain!",
+  "wishingforsunshine.message.sunrise": "%s wished for the dawn of a new day!",
   "wishingforsunshine.message.sunset": "%s wished for twilight's setting sun!",
   "wishingforsunshine.message.sunshine": "%s wished for clear skies!",
-  "wishingforsunshine.message.thunder": "%s wished for thunderbolts & lightning!"
+  "wishingforsunshine.message.thunder": "%s wished for thunderbolts & lightning!",
+  "wishingforsunshine.type.midday": "Midday",
+  "wishingforsunshine.type.midnight": "Midnight",
+  "wishingforsunshine.type.rain": "Rain",
+  "wishingforsunshine.type.sunrise": "Sunrise",
+  "wishingforsunshine.type.sunset": "Sunset",
+  "wishingforsunshine.type.sunshine": "Sunshine",
+  "wishingforsunshine.type.thunder": "Thunder"
 }

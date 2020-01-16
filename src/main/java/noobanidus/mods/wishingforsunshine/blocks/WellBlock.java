@@ -38,7 +38,11 @@ import java.util.UUID;
 public class WellBlock extends Block {
   private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-  private static final VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(0, 18.6, 6, 15, 19.6, 9), Block.makeCuboidShape(0, 17.6, 5, 15, 18.6, 7), Block.makeCuboidShape(0, 17.6, 8, 15, 18.6, 10), Block.makeCuboidShape(0, 16.6, 4, 15, 17.6, 6), Block.makeCuboidShape(0, 16.6, 9, 15, 17.6, 11), Block.makeCuboidShape(0, 15.6, 3, 15, 16.6, 5), Block.makeCuboidShape(0, 15.6, 10, 15, 16.6, 12), Block.makeCuboidShape(0, 14.6, 2, 15, 15.6, 4), Block.makeCuboidShape(0, 14.6, 11, 15, 15.6, 13), Block.makeCuboidShape(0, 13.6, 1, 15, 14.6, 3), Block.makeCuboidShape(0, 13.6, 12, 15, 14.6, 14), Block.makeCuboidShape(13, 0, 3, 16, 6, 13), Block.makeCuboidShape(0, 0, 0, 16, 6, 3), Block.makeCuboidShape(0, 0, 13, 16, 6, 16), Block.makeCuboidShape(0, 0, 3, 3, 6, 13), Block.makeCuboidShape(3, 0, 3, 13, 1, 13), Block.makeCuboidShape(3, 1, 3, 13, 2, 13), Block.makeCuboidShape(13, 6, 6, 14, 17, 9), Block.makeCuboidShape(2, 6, 6, 3, 17, 9), Block.makeCuboidShape(3, 11, 7, 13, 12, 8), Block.makeCuboidShape(3, 16, 6, 13, 17, 9));
+  private static final VoxelShape SHAPE_NORTH = VoxelUtil.multiOr(Block.makeCuboidShape(13, 0, 3,16, 6, 13), Block.makeCuboidShape(0, 0, 0,16, 6, 3), Block.makeCuboidShape(0, 0, 13,16, 6, 16), Block.makeCuboidShape(0, 0, 3,3, 6, 13), Block.makeCuboidShape(3, 0, 3,13, 1, 13), Block.makeCuboidShape(3, 1, 3,13, 2, 13), Block.makeCuboidShape(1, 18.6, 6.5,15, 19.6, 9.5), Block.makeCuboidShape(1, 17.6, 5.5,15, 18.6, 7.5), Block.makeCuboidShape(1, 17.6, 8.5,15, 18.6, 10.5), Block.makeCuboidShape(1, 16.6, 4.5,15, 17.6, 6.5), Block.makeCuboidShape(1, 16.6, 9.5,15, 17.6, 11.5), Block.makeCuboidShape(1, 15.6, 3.5,15, 16.6, 5.5), Block.makeCuboidShape(1, 15.6, 10.5,15, 16.6, 12.5), Block.makeCuboidShape(1, 14.6, 2.5,15, 15.6, 4.5), Block.makeCuboidShape(1, 14.6, 11.5,15, 15.6, 13.5), Block.makeCuboidShape(1, 13.6, 1.5,15, 14.6, 3.5), Block.makeCuboidShape(1, 13.6, 12.5,15, 14.6, 14.5), Block.makeCuboidShape(13, 6, 6.5,14, 17, 9.5), Block.makeCuboidShape(2, 6, 6.5,3, 17, 9.5), Block.makeCuboidShape(3, 11, 7.5,13, 12, 8.5), Block.makeCuboidShape(3, 16, 6.5,13, 17, 9.5));
+
+  private static final VoxelShape SHAPE_WEST = VoxelUtil.multiOr(Block.makeCuboidShape(3, 0, 13,13, 6, 16), Block.makeCuboidShape(13, 0, 0,16, 6, 16), Block.makeCuboidShape(0, 0, 0,3, 6, 16), Block.makeCuboidShape(3, 0, 0,13, 6, 3), Block.makeCuboidShape(3, 0, 3,13, 1, 13), Block.makeCuboidShape(3, 1, 3,13, 2, 13), Block.makeCuboidShape(6.5, 18.6, 1,9.5, 19.6, 15), Block.makeCuboidShape(8.5, 17.6, 1,10.5, 18.6, 15), Block.makeCuboidShape(5.5, 17.6, 1,7.5, 18.6, 15), Block.makeCuboidShape(9.5, 16.6, 1,11.5, 17.6, 15), Block.makeCuboidShape(4.5, 16.6, 1,6.5, 17.6, 15), Block.makeCuboidShape(10.5, 15.6, 1,12.5, 16.6, 15), Block.makeCuboidShape(3.5, 15.6, 1,5.5, 16.6, 15), Block.makeCuboidShape(11.5, 14.6, 1,13.5, 15.6, 15), Block.makeCuboidShape(2.5, 14.6, 1,4.5, 15.6, 15), Block.makeCuboidShape(12.5, 13.6, 1,14.5, 14.6, 15), Block.makeCuboidShape(1.5, 13.6, 1,3.5, 14.6, 15), Block.makeCuboidShape(6.5, 6, 13,9.5, 17, 14), Block.makeCuboidShape(6.5, 6, 2,9.5, 17, 3), Block.makeCuboidShape(7.5, 11, 3,8.5, 12, 13), Block.makeCuboidShape(6.5, 16, 3,9.5, 17, 13));
+
+  private static final VoxelShape SHAPE_COLLIDE = VoxelUtil.multiOr(Block.makeCuboidShape(3, 0, 13,13, 6, 16), Block.makeCuboidShape(13, 0, 0,16, 6, 16), Block.makeCuboidShape(0, 0, 0,3, 6, 16), Block.makeCuboidShape(3, 0, 0,13, 6, 3), Block.makeCuboidShape(3, 0, 3,13, 1, 13), Block.makeCuboidShape(3, 1, 3,13, 2, 13));
 
   public WellBlock(Block.Properties properties) {
     super(properties);
@@ -124,6 +128,16 @@ public class WellBlock extends Block {
 
   @Override
   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-    return SHAPE;
+    Direction facing = state.get(FACING);
+    if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+      return SHAPE_NORTH;
+    } else {
+      return SHAPE_WEST;
+    }
+  }
+
+  @Override
+  public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
+    return SHAPE_COLLIDE;
   }
 }

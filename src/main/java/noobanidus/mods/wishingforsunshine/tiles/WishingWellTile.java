@@ -88,15 +88,15 @@ public class WishingWellTile extends TileEntity {
         info.setRainTime(world.rand.nextInt(168000) + 12000);
         info.setThunderTime(world.rand.nextInt(168000) + 12000);
         return type;
-      case MORNING:
+      case SUNRISE:
         if (!world.isRemote) {
-          world.setDayTime(1000);
+          world.setDayTime(0);
         }
 
         return type;
       case SUNSET:
         if (!world.isRemote) {
-          world.setDayTime(13800);
+          world.setDayTime(12400);
         }
 
         return type;

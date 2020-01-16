@@ -29,7 +29,7 @@ public class ConfigManager {
     DEFAULTS.put(ItemType.RAIN, Objects.requireNonNull(Items.BLUE_ORCHID.getRegistryName()).toString());
     DEFAULTS.put(ItemType.SUNSHINE, Objects.requireNonNull(Items.SUNFLOWER.getRegistryName()).toString());
     DEFAULTS.put(ItemType.SUNSET, Objects.requireNonNull(Items.IRON_INGOT.getRegistryName()).toString());
-    DEFAULTS.put(ItemType.MORNING, Objects.requireNonNull(Items.GOLD_INGOT.getRegistryName()).toString());
+    DEFAULTS.put(ItemType.SUNRISE, Objects.requireNonNull(Items.GOLD_INGOT.getRegistryName()).toString());
 
     for (ItemType type : ItemType.values()) {
       String def = DEFAULTS.getOrDefault(type, "");
@@ -45,7 +45,7 @@ public class ConfigManager {
     spec.setConfig(configData);
   }
 
-  private static ItemStack getItemForType(ItemType type) {
+  public static ItemStack getItemForType(ItemType type) {
     ItemStack cachedItem = CACHE.get(type);
     if (cachedItem == null) {
       String def = MAP.get(type).get();
