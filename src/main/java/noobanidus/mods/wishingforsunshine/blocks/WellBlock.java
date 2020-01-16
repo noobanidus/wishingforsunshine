@@ -79,10 +79,12 @@ public class WellBlock extends Block {
     TileEntity te = world.getTileEntity(pos);
     if (te instanceof WishingWellTile) {
       ItemType result = ((WishingWellTile) te).itemActivated(player, hand, player.getHeldItem(hand));
-      if (result != null && !world.isRemote()) {
-        alertServer(player.getUniqueID(), result);
+      if (result != null) {
+        if (!world.isRemote()) {
+          alertServer(player.getUniqueID(), result);
+        }
+        return true;
       }
-      return true;
     }
 
     return super.onBlockActivated(state, world, pos, player, hand, trace);
