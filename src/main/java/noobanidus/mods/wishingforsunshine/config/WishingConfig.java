@@ -54,7 +54,7 @@ public class WishingConfig {
         return getItemStack(THUNDER_START);
       case SUNSHINE:
         return getItemStack(RAIN_THUNDER_STOP);
-      case MORNING:
+      case SUNRISE:
         return getItemStack(MORNING);
       case MIDDAY:
         return getItemStack(MIDDAY);

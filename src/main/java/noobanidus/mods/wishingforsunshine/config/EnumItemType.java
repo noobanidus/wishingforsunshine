@@ -4,7 +4,7 @@ public enum EnumItemType {
   RAIN,
   THUNDER,
   SUNSHINE,
-  MORNING,
+  SUNRISE,
   MIDDAY,
   SUNSET,
   MIDNIGHT
