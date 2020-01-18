@@ -46,6 +46,10 @@ public class WishingConfig {
   @Config.Comment("String that describes the ItemStack (modname:itemid:meta) used to CHANGE TIME to midnight (leave blank to disable this feature)")
   public static String MIDNIGHT = "minecraft:iron_ingot";
 
+  @Config.Comment("Chance of villages to contain wells. Set to 0 to disable, set to 1 to guarantee.")
+  @Config.RangeDouble(min=0, max=1)
+  public static double VILLAGE_CHANCE = 0.2;
+
   public static ItemStack getItemForType(EnumItemType type) {
     switch (type) {
       case RAIN:
