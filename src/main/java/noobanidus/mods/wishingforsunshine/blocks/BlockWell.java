@@ -14,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -29,6 +28,7 @@ import noobanidus.mods.wishingforsunshine.config.EnumItemType;
 import noobanidus.mods.wishingforsunshine.init.ModBlocks;
 import noobanidus.mods.wishingforsunshine.tiles.TileWishingWell;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -179,5 +179,21 @@ public class BlockWell extends Block {
   @Override
   protected BlockStateContainer createBlockState() {
     return new BlockStateContainer(this, FACING);
+  }
+
+  @Nonnull
+  @Override
+  public BlockRenderLayer getRenderLayer() {
+    return BlockRenderLayer.CUTOUT;
+  }
+
+  @Override
+  public boolean isFullCube(@Nonnull IBlockState state) {
+    return false;
+  }
+
+  @Override
+  public boolean isOpaqueCube(@Nonnull IBlockState state) {
+    return false;
   }
 }
