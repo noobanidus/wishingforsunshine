@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
-import noobanidus.mods.wishingforsunshine.util.ItemUtil;
+import noobanidus.libs.noobutil.util.ItemUtil;
 
 import javax.annotation.Nullable;
 import java.nio.file.Path;
@@ -25,6 +25,8 @@ public class ConfigManager {
   private static Map<ItemType, String> DEFAULTS = new HashMap<>();
   private static Map<ItemType, ItemStack> CACHE = new HashMap<>();
 
+  public static ForgeConfigSpec.DoubleValue VILLAGE_CHANCE;
+
   static {
     DEFAULTS.put(ItemType.RAIN, Objects.requireNonNull(Items.BLUE_ORCHID.getRegistryName()).toString());
     DEFAULTS.put(ItemType.SUNSHINE, Objects.requireNonNull(Items.SUNFLOWER.getRegistryName()).toString());
@@ -35,6 +37,8 @@ public class ConfigManager {
       String def = DEFAULTS.getOrDefault(type, "");
       MAP.put(type, COMMON_BUILDER.comment("Item to trigger the " + type.name().toLowerCase() + " effect (registry name, leave blank for no default)").define(type.name().toLowerCase(), def));
     }
+
+    VILLAGE_CHANCE = COMMON_BUILDER.defineInRange("village_chance", 0.2, 0, 1);
 
     COMMON_CONFIG = COMMON_BUILDER.build();
   }

@@ -27,9 +27,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import noobanidus.libs.noobutil.util.VoxelUtil;
 import noobanidus.mods.wishingforsunshine.config.ItemType;
 import noobanidus.mods.wishingforsunshine.tiles.WishingWellTile;
-import noobanidus.mods.wishingforsunshine.util.VoxelUtil;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
