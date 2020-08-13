@@ -1,8 +1,8 @@
 {
   "block.wishingforsunshine.well": "Well",
-  "itemGroup.wishingforsunshine": "Wishing For Sunshine",
+  "itemGroup.wishingforsunshine.items": "Wishing For Sunshine",
   "wishingforsunshine.jei.well": "World Manipulation",
-  "wishingforsunshine.message.midday": "%s wished for the bright, noon-day sun!",
+  "wishingforsunshine.message.noon": "%s wished for the bright, noon-day sun!",
   "wishingforsunshine.message.midnight": "%s wished for the witching hour!",
   "wishingforsunshine.message.rain": "%s wished for rain!",
   "wishingforsunshine.message.sunrise": "%s wished for the dawn of a new day!",

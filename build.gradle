@@ -1,141 +1,42 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.+', changing: true
-    }
-}
 plugins {
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
+	id 'fabric-loom' version '0.4-SNAPSHOT'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'maven-publish'
-apply plugin: 'eclipse'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
+archivesBaseName = "wishingforsunshine-fabric"
 version = "${minecraft_version}-${mod_version}"
 group = "noobanidus.mods"
-archivesBaseName = "wishingforsunshine"
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
-
-minecraft {
-    mappings channel: 'snapshot', version: "${mcp_mappings}"
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            taskName 'runClient'
-
-            workingDirectory project.file('run')
-
-            //property 'forge.logging.markers', 'CORE,REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                wishingforsunshine {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            taskName 'runServer'
-
-            workingDirectory project.file('run')
-
-            //property 'forge.logging.markers', 'CORE,REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                wishingforsunshine {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            taskName 'runData'
-
-            workingDirectory project.file('run')
-
-            environment 'target', 'fmluserdevdata'
-
-            //property 'forge.logging.markers', 'CORE,REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                wishingforsunshine {
-                    source sourceSets.main
-                }
-            }
-
-            args '--mod', 'wishingforsunshine', '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"',
-                    '--existing', '"' + rootProject.file('src/main/resources') + '"'//, '--existing', '"' + rootProject.file('src/generated/resources') + '"'
-
-        }
-    }
-}
-
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-}
-
-repositories {
-    maven {
-        url "http://maven.tterrag.com/"
-    }
-    maven { // JEI
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "Jared"
-        url = "https://maven.blamejared.com"
-    }
-}
-
-configurations {
-    shade
-}
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+	//to change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+processResources {
+	inputs.property "version", project.version
 
-    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
-    implementation fg.deobf(registrate)
-    shade registrate
+	from(sourceSets.main.resources.srcDirs) {
+		include "fabric.mod.json"
+		expand "version": project.version
+	}
 
-    def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
-    implementation fg.deobf(noobutil)
-    shade noobutil
+	from(sourceSets.main.resources.srcDirs) {
+		exclude "fabric.mod.json"
+	}
 }
 
-shadowJar {
-    configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'noobanidus.mods.repack_wfs.registrate'
-    relocate 'noobanidus.libs.noobutil', 'noobanids.libs.repack_wfs.noobutil'
-    classifier ''
+// ensure that the encoding is set to UTF-8, no matter what the system default is
+// this fixes some edge cases with special characters not displaying correctly
+// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
 }
 
-jar.classifier = 'nodep'
-
-reobf {
-    shadowJar {}
+jar {
+	from "LICENSE"
 }
-
-build.dependsOn reobfShadowJar
