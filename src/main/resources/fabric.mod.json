@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "wishingforsunshine",
+  "version": "${version}",
+  "name": "Wishing for Sunshine",
+  "description": "A craftable Wishing Well block into which a number of different items (configurable) can be thrown in order to affect the weather and the day/night cycle.",
+  "authors": [
+    "Noobanidus",
+    "AlcatrazEscapee"
+  ],
+  "contact": {
+    "sources": "http://github.com/duely/wishingforsunshine"
+  },
+  "license": "MIT",
+  "icon": "assets/wishingforsunshine/textures/logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "noobanidus.mods.wishingforsunshine.WishingForSunshine"
+    ],
+    "client": [
+      "noobanidus.mods.wishingforsunshine.client.WishingForSunshineClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  }
+}
