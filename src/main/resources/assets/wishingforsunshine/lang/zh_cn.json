@@ -1,0 +1,19 @@
+{
+  "block.wishingforsunshine.well": "水井",
+  "itemGroup.wishingforsunshine.items": "祈求晴天 §e(Wishing For Sunshine)",
+  "wishingforsunshine.jei.well": "世界操纵",
+  "wishingforsunshine.message.noon": "%s 祈求了正午明媚的阳光!",
+  "wishingforsunshine.message.midnight": "%s 祈求了午夜时分!",
+  "wishingforsunshine.message.rain": "%s 祈求了雨水的恩惠!",
+  "wishingforsunshine.message.sunrise": "%s 祈求了新一天的黎明!",
+  "wishingforsunshine.message.sunset": "%s 祈求了日落时分的暮色!",
+  "wishingforsunshine.message.sunshine": "%s 祈求了一片蔚蓝的天空!",
+  "wishingforsunshine.message.thunder": "%s 祈求了雷电的降临!",
+  "wishingforsunshine.type.midday": "正午",
+  "wishingforsunshine.type.midnight": "午夜",
+  "wishingforsunshine.type.rain": "雨天",
+  "wishingforsunshine.type.sunrise": "日出",
+  "wishingforsunshine.type.sunset": "日落",
+  "wishingforsunshine.type.sunshine": "晴天",
+  "wishingforsunshine.type.thunder": "雷暴"
+}
