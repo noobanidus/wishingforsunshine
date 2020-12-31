@@ -4,15 +4,18 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Hand;
-import net.minecraft.world.storage.WorldInfo;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.IWorldInfo;
+import net.minecraft.world.storage.ServerWorldInfo;
 import noobanidus.mods.wishingforsunshine.config.ConfigManager;
 import noobanidus.mods.wishingforsunshine.config.ItemType;
 import noobanidus.mods.wishingforsunshine.init.ModTiles;
 
 public class WishingWellTile extends TileEntity {
-  public WishingWellTile() {
-    super(ModTiles.WISHING_WELL.get());
+  public WishingWellTile(TileEntityType<? extends WishingWellTile> type) {
+    super(type);
   }
 
   public ItemType itemCollide(ItemEntity itemEntity) {
@@ -36,7 +39,7 @@ public class WishingWellTile extends TileEntity {
   }
 
   private ItemType handleItem(ItemStack stack) {
-    if (stack.isEmpty() || world == null) {
+    if (stack.isEmpty() || world == null || world.isRemote) {
       return null;
     }
 
@@ -45,7 +48,12 @@ public class WishingWellTile extends TileEntity {
       return null;
     }
 
-    WorldInfo info = world.getWorldInfo();
+    IWorldInfo info1 = world.getWorldInfo();
+    if (!(info1 instanceof ServerWorldInfo) || !(world instanceof ServerWorld)) {
+      return null;
+    }
+
+    ServerWorldInfo info = (ServerWorldInfo) info1;
 
     switch (type) {
       case RAIN:
@@ -90,25 +98,25 @@ public class WishingWellTile extends TileEntity {
         return type;
       case SUNRISE:
         if (!world.isRemote) {
-          world.setDayTime(0);
+          ((ServerWorld)world).setDayTime(0);
         }
 
         return type;
       case SUNSET:
         if (!world.isRemote) {
-          world.setDayTime(12400);
+          ((ServerWorld)world).setDayTime(12400);
         }
 
         return type;
       case MIDDAY:
         if (!world.isRemote) {
-          world.setDayTime(5800);
+          ((ServerWorld)world).setDayTime(5800);
         }
 
         return type;
       case MIDNIGHT:
         if (!world.isRemote) {
-          world.setDayTime(17800);
+          ((ServerWorld)world).setDayTime(17800);
         }
 
         return type;

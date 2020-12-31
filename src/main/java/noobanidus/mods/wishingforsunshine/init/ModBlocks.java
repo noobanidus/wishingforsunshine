@@ -1,6 +1,7 @@
 package noobanidus.mods.wishingforsunshine.init;
 
 import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.block.SoundType;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
@@ -15,8 +16,8 @@ import static noobanidus.mods.wishingforsunshine.WishingForSunshine.REGISTRATE;
 
 @Mod.EventBusSubscriber(modid = WishingForSunshine.MODID)
 public class ModBlocks {
-  public static final RegistryEntry<WellBlock> WELL = REGISTRATE.block("well", WellBlock::new)
-      .blockstate((ctx, p) -> p.horizontalBlock(ctx.getEntry(), p.getExistingFile(new ResourceLocation(WishingForSunshine.MODID, "block/well"))))
+  public static final BlockEntry<WellBlock> WELL = REGISTRATE.block("well", WellBlock::new)
+      .blockstate((ctx, p) -> p.horizontalBlock(ctx.getEntry(), p.models().getExistingFile(new ResourceLocation(WishingForSunshine.MODID, "block/well"))))
       .properties(o -> o.hardnessAndResistance(3f).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE))
       .simpleItem()
       .recipe((ctx, p) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)

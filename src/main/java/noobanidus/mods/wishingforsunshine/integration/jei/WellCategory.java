@@ -1,5 +1,6 @@
 package noobanidus.mods.wishingforsunshine.integration.jei;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -80,7 +81,7 @@ public class WellCategory implements IRecipeCategory<WellCategory.WellRecipe> {
   }
 
   @Override
-  public void draw(WellRecipe recipe, double mouseX, double mouseY) {
+  public void draw(WellRecipe recipe, MatrixStack stack, double mouseX, double mouseY) {
     IDrawable toDraw = null;
 
     switch (recipe.getType()) {
@@ -111,11 +112,11 @@ public class WellCategory implements IRecipeCategory<WellCategory.WellRecipe> {
       return;
     }
 
-    toDraw.draw(42, 6);
+    toDraw.draw(stack, 42, 6);
     Minecraft mc = Minecraft.getInstance();
     FontRenderer fr = mc.fontRenderer;
     int stringWidth = fr.getStringWidth(recipe.getName());
-    fr.drawString(recipe.getName(), (float) (this.background.getWidth() - stringWidth) / 2, 0.0F, -8355712);
+    fr.drawString(stack, recipe.getName(), (float) (this.background.getWidth() - stringWidth) / 2, 0.0F, -8355712);
   }
 
   @Override
