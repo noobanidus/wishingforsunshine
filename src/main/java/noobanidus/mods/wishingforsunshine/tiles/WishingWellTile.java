@@ -54,6 +54,7 @@ public class WishingWellTile extends TileEntity {
     }
 
     ServerWorldInfo info = (ServerWorldInfo) info1;
+    long dayTime = info.getDayTime();
 
     switch (type) {
       case RAIN:
@@ -98,25 +99,34 @@ public class WishingWellTile extends TileEntity {
         return type;
       case SUNRISE:
         if (!world.isRemote) {
-          ((ServerWorld)world).setDayTime(0);
+          // Dawn of the next day
+          long newTime = dayTime + 24000L;
+          ((ServerWorld)world).setDayTime(newTime - newTime % 24000);
         }
 
         return type;
       case SUNSET:
         if (!world.isRemote) {
-          ((ServerWorld)world).setDayTime(12400);
+          // Sunset of the next day
+          long newTime = (dayTime + 24000L);
+          newTime -= newTime % 24000L;
+          ((ServerWorld)world).setDayTime(newTime + 12400L);
         }
 
         return type;
       case MIDDAY:
         if (!world.isRemote) {
-          ((ServerWorld)world).setDayTime(5800);
+          long newTime = (dayTime + 24000L);
+          newTime -= newTime % 24000L;
+          ((ServerWorld)world).setDayTime(newTime + 5800);
         }
 
         return type;
       case MIDNIGHT:
         if (!world.isRemote) {
-          ((ServerWorld)world).setDayTime(17800);
+          long newTime = (dayTime + 24000L);
+          newTime -= newTime % 24000L;
+          ((ServerWorld)world).setDayTime(newTime + 17800);
         }
 
         return type;
