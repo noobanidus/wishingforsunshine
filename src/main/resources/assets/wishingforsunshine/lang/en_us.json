@@ -1,0 +1,23 @@
+{
+  "block.wishingforsunshine.well": "Well",
+
+  "wishingforsunshine.message.noon": "%s wished for the bright, noon-day sun!",
+  "wishingforsunshine.message.midnight": "%s wished for the witching hour!",
+  "wishingforsunshine.message.rain": "%s wished for rain!",
+  "wishingforsunshine.message.sunrise": "%s wished for the dawn of a new day!",
+  "wishingforsunshine.message.sunset": "%s wished for twilight's setting sun!",
+  "wishingforsunshine.message.sunshine": "%s wished for clear skies!",
+  "wishingforsunshine.message.thunder": "%s wished for thunderbolts & lightning!",
+  "wishingforsunshine.type.midday": "Midday",
+  "wishingforsunshine.type.midnight": "Midnight",
+  "wishingforsunshine.type.rain": "Rain",
+  "wishingforsunshine.type.sunrise": "Sunrise",
+  "wishingforsunshine.type.sunset": "Sunset",
+  "wishingforsunshine.type.sunshine": "Sunshine",
+  "wishingforsunshine.type.thunder": "Thunder",
+
+  "description.wishingforsunshine.well": "A special block that has the ability to change the weather and time of day at will at the cost of an item",
+
+  "text.autoconfig.wishingforsunshine.title": "Wishing For Sunshine",
+  "text.autoconfig.wishingforsunshine.option.debugMode": "Debug Mode"
+}

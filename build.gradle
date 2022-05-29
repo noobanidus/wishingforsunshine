@@ -1,88 +1,63 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-    }
-}
-apply plugin: 'net.minecraftforge.gradle.forge'
-
-version = "1.12.2-0.0.0.4"
-group = "noobanidus.mods.wishingforsunshine"
-archivesBaseName = "wishingforsunshine"
-
-sourceCompatibility = targetCompatibility = "1.8"
-
-compileJava {
-    sourceCompatibility = targetCompatibility = "1.8"
-    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+plugins {
+	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'maven-publish'
 }
 
-minecraft {
-    version = "1.12.2-14.23.5.2847"
-    runDir = "run"
-    mappings = "stable_39"
-    useDepAts = true
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
-    replace "GRADLE:VERSION", project.version
-}
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
 
 repositories {
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        url "https://maven.mcmoddev.com/"
-    }
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "http://dvs1.progwml6.com/files/maven"
-    }
+	maven {
+		name "Parchment"
+		url "https://maven.parchmentmc.org"
+	}
 }
 
 dependencies {
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // compile against the JEI API but do not include it at runtime
-    deobfProvided "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
-    // at runtime, use the full JEI jar
-    runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
+	//Parchment
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-1.18.1:2022.03.06@zip")
+	}
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+	inputs.property "version", project.version
 
-    from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
-
-        expand "version": project.version, "mc_version": project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "mcmod.info"
-    }
-
-    rename '(.+at\\.cfg)', 'META-INF/$1'
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
 }
 
-task deobfJar (type: Jar) {
-    from sourceSets.main.output
-    classifier = "deobf"
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 17
+}
+
+java {
+	withSourcesJar()
 }
 
 jar {
-    manifest {
-        //attributes 'FMLAT': 'fzkk_at.cfg'
-    }
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}"}
+	}
 }
 
-artifacts {
-    archives deobfJar
-}
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
 
+	repositories {
+	}
+}
