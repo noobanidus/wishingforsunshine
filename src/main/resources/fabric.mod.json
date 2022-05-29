@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "wishingforsunshine",
+  "version": "${version}",
+
+  "name": "Wishing for Sunshine",
+  "description": "A Wishing Well that allows you to define items that, when thrown in, change the time of day and/or weather conditions.",
+  "authors": [
+    "ZestyBlaze",
+    "Noobanidus"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/wishing-for-sunshine-fabric",
+    "sources": "https://github.com/noobanidus/wishingforsunshine",
+    "issues": "https://github.com/noobanidus/wishingforsunshine/issues"
+  },
+
+  "license": "MIT License",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.zestyblaze.wishingforsunshine.WishingForSunshine"
+    ],
+    "client": [
+      "net.zestyblaze.wishingforsunshine.client.WFSClient"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}

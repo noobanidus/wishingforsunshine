@@ -1,29 +1,19 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "wishingforsunshine:well"
-  },
   "variants": {
-    "facing": {
-      "north": { },
-      "south": { },
-      "east": {
-        "transform": {
-          "rotation": {
-            "y": 90
-          }
-        }
-      },
-      "west": {
-        "transform": {
-          "rotation": {
-            "y": 90
-          }
-        }
-      }
+    "facing=north": {
+      "model": "wishingforsunshine:block/well"
     },
-    "inventory": {
-      "model": "wishingforsunshine:well"
+    "facing=south": {
+      "model": "wishingforsunshine:block/well",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "wishingforsunshine:block/well",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "wishingforsunshine:block/well",
+      "y": 90
     }
   }
 }
